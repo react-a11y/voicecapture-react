@@ -29,11 +29,11 @@ const distPackageJson = {
   },
   files: [
     'voicecapture-react.js',
-    'voicecapture.d.ts',
+    'voicecapture-react.d.ts',
     'VoiceCapture.translate.js'
   ],
   main: './voicecapture-react.js',
-  types: './voicecapture.d.ts',
+  types: './voicecapture-react.d.ts',
   exports: {
     ".": {
       "import": './voicecapture-react.js',
@@ -58,5 +58,5 @@ fs.copyFileSync(path.resolve(__dirname, '../README.md'), path.join(outputDir, 'R
 console.log('README.md copied to dist.');
 
 // Optionally copy declaration file
-fs.copyFileSync(path.resolve(__dirname, '../src/voicecapture.d.ts'), path.join(outputDir, 'voicecapture.d.ts'));
+fs.copyFileSync(path.resolve(__dirname, '../src/voicecapture-react.d.ts'), path.join(outputDir, 'voicecapture-react.d.ts'));
 console.log('voicecapture.d.ts copied to dist.');
