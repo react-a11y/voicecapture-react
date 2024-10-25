@@ -1,6 +1,6 @@
 # VoiceCapture Component
 
-The `VoiceCapture` component is a React-based audio capture and transcription tool that leverages the browser's `SpeechRecognition` API. It provides an interactive UI to start, stop, and manage voice recognition, supporting multiple languages and display modes. Additionally, the component can be easily integrated with frameworks like `NucleusReact`.
+The `VoiceCapture` component is a React-based audio capture and transcription tool that leverages the browser's `SpeechRecognition` API. It provides an interactive UI to start, stop, and manage voice recognition, supporting multiple languages and display modes. Additionally.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -13,7 +13,7 @@ The `VoiceCapture` component is a React-based audio capture and transcription to
 Install the component:
 
 ```bash
-npm install your-package-name
+npm install voicecapture-react
 ```
 
 ## Usage
@@ -50,14 +50,11 @@ const MyComponent = () => {
 
 ## Example
 
-Below is an example using `VoiceCapture` with `NucleusReact` and additional controls for language selection and display mode.
+Below is an example using `VoiceCapture` and additional controls for language selection and display mode.
 
 ```jsx
 import { useState } from "react";
 import VoiceCapture from "voicecapture-react";
-import NucleusReact from "nucleus-react-js";
-import { configApp } from "./App.config";
-import "./App.scss";
 
 function App() {
   const [start, setStart] = useState(false);
@@ -79,7 +76,7 @@ function App() {
   };
 
   return (
-    <NucleusReact config={configApp}>
+    <>
       <VoiceCapture
         start={start}
         lang={lang}
@@ -87,10 +84,10 @@ function App() {
         onVoiceTranscript={handleVoiceTranscript}
         onDeactivate={handleDeactivate}
       />
-      <div className="content example">
+      <div>
         <h2>VoiceCapture Example</h2>
 
-        <div className="content-actions">
+        <div>
           <button onClick={() => openVoiceCapture("fullscreen")}>Fullscreen Mode</button>
           <button onClick={() => openVoiceCapture("float")}>Float Mode</button>
 
@@ -112,7 +109,7 @@ function App() {
           <textarea readOnly value={transcript} placeholder="Voice transcript will appear here..." />
         </div>
       )}
-    </NucleusReact>
+    </>
   );
 }
 
