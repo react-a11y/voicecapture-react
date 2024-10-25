@@ -24,6 +24,7 @@ const VoiceCapture = ({
   const recognitionRef = useRef<any>(null);
   const textTipRef = useRef<HTMLParagraphElement | null>(null);
   const finalTranscriptRef = useRef<string>("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -54,23 +55,27 @@ const VoiceCapture = ({
           console.warn("Recognition stopped without result.");
           updateText("noSpeech");
         }
-        setTimeout(deactivateVoice, 5000);
+        startTimeout();
       };
 
       recognition.onresult = handleResults;
-
       recognitionRef.current = recognition;
     } else {
       console.warn(
         "SpeechRecognition not supported, please update your browser."
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      clearTimeout(timeoutRef.current!);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, onVoiceTranscript]);
 
   useEffect(() => {
+    clearTimeout(timeoutRef.current!);
     start ? activateVoice() : deactivateVoice();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [start]);
 
   const activateVoice = () => {
@@ -108,7 +113,7 @@ const VoiceCapture = ({
         break;
     }
 
-    setTimeout(deactivateVoice, 5000);
+    startTimeout();
   };
 
   const handleResults = (event: any) => {
@@ -139,6 +144,10 @@ const VoiceCapture = ({
   const getTranslation = (key: string): string => {
     const translationsForLang = translates[lang] || translates["en"];
     return translationsForLang[key] || key;
+  };
+
+  const startTimeout = () => {
+    timeoutRef.current = setTimeout(deactivateVoice, 5000);
   };
 
   return (
