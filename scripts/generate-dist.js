@@ -28,15 +28,16 @@ const distPackageJson = {
     react: '^17.0.0 || ^18.0.0',
   },
   files: [
-    'voicecapture.js',
-    'voicecapture.d.ts'
+    'voicecapture-react.js',
+    'voicecapture.d.ts',
+    'VoiceCapture.translate.js'
   ],
-  main: './voicecapture.js',
+  main: './voicecapture-react.js',
   types: './voicecapture.d.ts',
   exports: {
     ".": {
-      "import": './voicecapture.js',
-      "require": './voicecapture.js'
+      "import": './voicecapture-react.js',
+      "require": './voicecapture-react.js'
     }
   }
 };
