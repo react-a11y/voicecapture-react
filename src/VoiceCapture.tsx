@@ -12,7 +12,7 @@ const translates: Record<string, Record<string, string>> = {
   },
 };
 
-const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscript }: any) => {
+const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscript, onDeactivate }: any) => {
   const [recognizing, setRecognizing] = useState(false);
   const [animationButton, setAnimationButton] = useState(false);
   const recognitionRef = useRef<any>(null);
@@ -40,16 +40,15 @@ const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscri
 
       recognition.onend = () => {
         setRecognizing(false);
-
+        setAnimationButton(false);
         if (finalTranscriptRef.current) {
           updateText('');
           onVoiceTranscript(finalTranscriptRef.current);
         } else {
           console.warn('Recognition stopped without result.');
           updateText('noSpeech');
-          setTimeout(deactivateVoice, 5000);
         }
-        setAnimationButton(false);
+        setTimeout(deactivateVoice, 5000);
       };
 
       recognition.onresult = handleResults;
@@ -80,6 +79,7 @@ const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscri
       setRecognizing(false);
       setAnimationButton(false);
       recognitionRef.current.stop();
+      onDeactivate && onDeactivate(); // Notify parent component to deactivate `start`
     }
   };
 
