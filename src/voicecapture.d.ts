@@ -1,2 +1,2 @@
-declare module 'voicecapture';
+declare module 'voicecapture-react';
   
