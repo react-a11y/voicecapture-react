@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
-import "./VoiceCapture.scss";
+import "./VoiceCapture.css";
 import { translates } from "./VoiceCapture.translate";
 
 const translate: Record<string, Record<string, string>> = translates;
