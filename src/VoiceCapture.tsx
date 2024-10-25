@@ -19,6 +19,7 @@ const VoiceCapture = ({
   const textTipRef = useRef<HTMLParagraphElement | null>(null);
   const finalTranscriptRef = useRef<string>("");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const errorOccurredRef = useRef<boolean>(false);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -31,11 +32,13 @@ const VoiceCapture = ({
         setRecognizing(true);
         updateText("speakNow");
         setAnimationButton(true);
+        errorOccurredRef.current = false
       };
 
       recognition.onerror = (event: any) => {
         console.error("Recognition error:", event.error);
         setAnimationButton(false);
+        errorOccurredRef.current = true;
         handleError(event.error);
       };
 
@@ -45,7 +48,7 @@ const VoiceCapture = ({
         if (finalTranscriptRef.current) {
           updateText("");
           onVoiceTranscript(finalTranscriptRef.current);
-        } else {
+        } else if (!errorOccurredRef.current) {
           console.warn("Recognition stopped without result.");
           updateText("noSpeech");
         }
@@ -149,7 +152,7 @@ const VoiceCapture = ({
       className={`voicecapture ${start ? "active" : ""} ${mode ? mode : ""}`}
       onClick={() => deactivateVoice()}
     >
-      <button className="exit" type="button" onClick={() => deactivateVoice}>
+      <button className="exit" type="button" onClick={() => deactivateVoice()}>
         <i className="icon icon-exit">X</i>
       </button>
       <p ref={textTipRef} className="text-tip"></p>
