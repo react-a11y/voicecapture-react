@@ -47,3 +47,79 @@
     color: var(--primary);
   }
 }
+
+.example-actions {
+  width: 50%;
+  display: flex;
+  gap: 20px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+}
+
+.button-voicecapture-example {
+  background: var(--primary);
+  color: #fff;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--vtl-background);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  min-height: 70px;
+  white-space: nowrap;
+
+  svg {
+    margin-right: 1rem;
+  }
+
+  .material-symbols-outlined {
+    margin-right: 0.5rem;
+  }
+  .material-symbols-outlined.plus {
+    margin: 0 0.5rem;
+  }
+}
+
+.lang-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.lang-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  font-size: 16px;
+  color: var(--color-text);
+  background-color: var(--vtl-background);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-label {
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.input-field {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  background-color: var(--vtl-background);
+  color: var(--color-text);
+}
+
+.textarea {
+  resize: vertical;
+  height: 100px;
+}
