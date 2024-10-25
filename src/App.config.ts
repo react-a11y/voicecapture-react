@@ -15,9 +15,25 @@ export const configApp = {
     {
       name: 'Usage',
       language: 'tsx',
-      content: `import VoiceCapture from 'voicecapture-react'
+      content: `import { useState } from "react";
+import VoiceCapture from 'voicecapture-react';
 
-<VoiceCapture />`,
+const MyComponent = () => {
+  const [start, setStart] = useState(false);
+  const handleTranscript = (transcript) => {
+    console.log("Transcript:", transcript);
+  };
+
+  return (
+    <VoiceCapture
+      start={start}
+      lang="en"
+      mode="fullscreen"
+      onVoiceTranscript={handleTranscript}
+      onDeactivate={() => setStart(false)}
+    />
+  );
+};`,
     },
   ],
 }
