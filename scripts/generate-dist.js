@@ -30,7 +30,8 @@ const distPackageJson = {
   files: [
     'voicecapture-react.js',
     'voicecapture-react.d.ts',
-    'VoiceCapture.translate.js'
+    'VoiceCapture.translate.js',
+    'VoiceCapture.css'
   ],
   main: './voicecapture-react.js',
   types: './voicecapture-react.d.ts',
@@ -56,6 +57,10 @@ console.log('Minified dist package.json generated successfully.');
 // Optionally copy README
 fs.copyFileSync(path.resolve(__dirname, '../README.md'), path.join(outputDir, 'README.md'));
 console.log('README.md copied to dist.');
+
+// Copy css file
+fs.copyFileSync(path.resolve(__dirname, '../src/VoiceCapture.css'), path.join(outputDir, 'VoiceCapture.css'));
+console.log('VoiceCapture.css copied to dist.');
 
 // Optionally copy declaration file
 fs.copyFileSync(path.resolve(__dirname, '../src/voicecapture-react.d.ts'), path.join(outputDir, 'voicecapture-react.d.ts'));

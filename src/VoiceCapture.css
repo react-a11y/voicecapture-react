@@ -22,32 +22,32 @@ body {
   --input-bg-color: #fff;
   --input-bg-color-hover: #fff;
   --input-drop-shadow: #20212447;
+}
 
-  &.darkmode {
-    --voicecapture-color-text: #fff;
-    --voicecapture-default: #555;
-    --voicecapture-primary: #1e8057;
-    --voicecapture-secondary: #0d7eaa;
-    --voicecapture-background: #222;
-    --voicecapture-background-tooltip: #fff;
-    --voicecapture-shadow-tooltip: rgba(0, 0, 0, 0.2);
-    --voicecapture-text: #000;
-    --voicecapture-background-svg: #fff;
+body.darkmode {
+  --voicecapture-color-text: #fff;
+  --voicecapture-default: #555;
+  --voicecapture-primary: #1e8057;
+  --voicecapture-secondary: #0d7eaa;
+  --voicecapture-background: #222;
+  --voicecapture-background-tooltip: #fff;
+  --voicecapture-shadow-tooltip: rgba(0, 0, 0, 0.2);
+  --voicecapture-text: #000;
+  --voicecapture-background-svg: #fff;
 
-    --main-color: #fff;
-    --main-color-rgb: 255, 255, 255;
-    --main-color-primary: 26, 115, 232;
-    --main-color-secondary: green;
-    --main-bg-color-primary: #202124;
-    --main-bg-color-secondary: #171717;
-    --main-bg-color-profile: #202124;
-    --main-border-color: #747775;
-    --main-invert: 1;
-    --logo-filter: grayscale(1) brightness(3);
-    --input-bg-color: #202124;
-    --input-bg-color-hover: #303134;
-    --input-drop-shadow: #171717;
-  }
+  --main-color: #fff;
+  --main-color-rgb: 255, 255, 255;
+  --main-color-primary: 26, 115, 232;
+  --main-color-secondary: green;
+  --main-bg-color-primary: #202124;
+  --main-bg-color-secondary: #171717;
+  --main-bg-color-profile: #202124;
+  --main-border-color: #747775;
+  --main-invert: 1;
+  --logo-filter: grayscale(1) brightness(3);
+  --input-bg-color: #202124;
+  --input-bg-color-hover: #303134;
+  --input-drop-shadow: #171717;
 }
 
 .voicecapture {
@@ -68,58 +68,65 @@ body {
   z-index: 99;
   color: var(--voicecapture-color-text);
   -webkit-tap-highlight-color: transparent;
-  &.active {
-    opacity: 1;
-    pointer-events: all;
-    p {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .btn-voice {
-      transform: scale(1);
-    }
-  }
-  &.fullscreen {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-  }
-  &.float {
-    position: fixed;
-    right: 2rem;
-    bottom: 2rem;
-    border-radius: 100px;
-    justify-content: flex-end;
-    .exit {
-      display: none;
-    }
-    .btn-voice {
-      --mic-volume-size: 80px;
-    }
-  }
-  p {
-    font-size: 22px;
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    transform: translateX(100px);
-    transition: 1s all;
-  }
-  .exit {
-    &:before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-    }
-  }
+}
+
+.voicecapture.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.voicecapture.active p {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.voicecapture.active .btn-voice {
+  transform: scale(1);
+}
+
+.voicecapture.fullscreen {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.voicecapture.float {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  border-radius: 100px;
+  justify-content: flex-end;
+}
+
+.voicecapture.float .exit {
+  display: none;
+}
+
+.voicecapture.float .btn-voice {
+  --mic-volume-size: 80px;
+}
+
+.voicecapture p {
+  font-size: 22px;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  transform: translateX(100px);
+  transition: 1s all;
+}
+
+.voicecapture .exit:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .btn-voice {
@@ -128,7 +135,7 @@ body {
   background-color: rgba(var(--main-color-rgb), 0.05);
   border-radius: 50%;
   border: 0;
-  box-shadow: 0 0 0 1px rgba(#fff, 0.6),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6),
     0 10px 20px rgba(var(--main-color-rgb), 0.1);
   cursor: pointer;
   display: flex;
@@ -143,31 +150,35 @@ body {
   width: var(--mic-volume-size);
   min-width: var(--mic-volume-size);
   -webkit-tap-highlight-color: transparent;
-  &.active {
-    animation: 1s voiceAnimation infinite alternate;
-    opacity: 1;
-    svg {
-      fill: #ea4335;
-    }
-  }
-  &:hover {
-    transform: scale(1.1);
-  }
-  svg {
-    height: 50%;
-    width: 50%;
-    fill: var(--main-color);
-  }
+}
+
+.btn-voice.active {
+  animation: 1s voiceAnimation infinite alternate;
+  opacity: 1;
+}
+
+.btn-voice.active svg {
+  fill: #ea4335;
+}
+
+.btn-voice:hover {
+  transform: scale(1.1);
+}
+
+.btn-voice svg {
+  height: 50%;
+  width: 50%;
+  fill: var(--main-color);
 }
 
 @keyframes voiceAnimation {
   0% {
-    box-shadow: 0 0 0 1px rgba(#fff, 0.6),
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6),
       0 10px 20px rgba(var(--main-color-rgb), 0.1),
       0 0 10px rgba(var(--main-color-rgb), 0.1);
   }
   100% {
-    box-shadow: 0 0 0 1px rgba(#fff, 0.6),
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6),
       0 10px 20px rgba(var(--main-color-rgb), 0.1),
       0 0 0 30px rgba(var(--main-color-rgb), 0.1);
   }
@@ -187,11 +198,11 @@ body {
 .icon {
   background: url(//ssl.gstatic.com/inputtools/images/ita_sprite2.png) no-repeat;
   display: block;
-  filter: Invert(var(--main-invert));
+  filter: invert(var(--main-invert));
   font-size: 0;
   height: 14px;
   line-height: 0;
-  margin: 0px;
+  margin: 0;
   opacity: 0.4;
   pointer-events: none;
   width: 14px;
@@ -219,10 +230,10 @@ body {
   text-align: center;
   transition: 0.3s all;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  &:hover,
-  &:focus,
-  &:active {
-    box-shadow: 0 0 0 1px rgba(var(--main-color-rgb), 0.3);
-  }
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  box-shadow: 0 0 0 1px rgba(var(--main-color-rgb), 0.3);
 }
