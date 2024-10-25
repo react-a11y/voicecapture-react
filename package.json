@@ -1,0 +1,53 @@
+{
+  "name": "voicecapture-react",
+  "private": false,
+  "version": "0.1.3",
+  "type": "module",
+  "description": "A library for integrating VLibras into React applications.",
+  "author": "Lucas Ferreira <lucasferreiralimax@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-a11y/voicecapture-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/react-a11y/voicecapture-react/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:module": "tsc -p tsconfig.module.json && npm run rename && npm run minify && npm run postbuild",
+    "rename": "mv dist/VoiceCapture.js dist/voicecapture-react.js",
+    "minify": "esbuild dist/**/*.js --minify --outdir=dist --allow-overwrite ",
+    "postbuild": "node scripts/generate-dist.js",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "publish": "cd dist && npm pub && cd .."
+  },
+  "dependencies": {
+    "nucleus-react-js": "^0.0.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^22.7.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.11.0",
+    "jsonminify": "^0.4.2",
+    "sass-embedded": "^1.80.4",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0",
+    "vite": "^5.4.10"
+  },
+  "keywords": [
+    "react",
+    "vlibras",
+    "accessibility",
+    "a11y"
+  ]
+}
