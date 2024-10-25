@@ -13,11 +13,11 @@ const translates: Record<string, Record<string, string>> = {
 };
 
 const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscript }: any) => {
-  const [finalTranscript, setFinalTranscript] = useState('');
   const [recognizing, setRecognizing] = useState(false);
   const [animationButton, setAnimationButton] = useState(false);
   const recognitionRef = useRef<any>(null);
   const textTipRef = useRef<HTMLParagraphElement | null>(null);
+  const finalTranscriptRef = useRef<string>('');
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window) {
@@ -40,9 +40,10 @@ const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscri
 
       recognition.onend = () => {
         setRecognizing(false);
-        if (finalTranscript) {
+
+        if (finalTranscriptRef.current) {
           updateText('');
-          onVoiceTranscript(finalTranscript);
+          onVoiceTranscript(finalTranscriptRef.current);
         } else {
           console.warn('Recognition stopped without result.');
           updateText('noSpeech');
@@ -68,7 +69,7 @@ const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscri
   const activateVoice = () => {
     if (!recognizing && recognitionRef.current) {
       recognitionRef.current.lang = lang;
-      setFinalTranscript('');
+      finalTranscriptRef.current = '';
       setRecognizing(true);
       recognitionRef.current.start();
     }
@@ -88,15 +89,12 @@ const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscri
 
     switch (error) {
       case 'no-speech':
-        console.warn(getTranslation('noSpeech'));
         updateText('noSpeech');
         break;
       case 'audio-capture':
-        console.warn(getTranslation('audioCapture'));
         updateText('audioCapture');
         break;
       case 'not-allowed':
-        console.warn(getTranslation('enableMicrophone'));
         updateText('enableMicrophone');
         break;
       default:
@@ -112,17 +110,16 @@ const VoiceCapture = ({ start, lang = 'en', mode = 'fullscreen', onVoiceTranscri
 
     for (let i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
-        setFinalTranscript(prev => prev + event.results[i][0].transcript);
+        finalTranscriptRef.current += event.results[i][0].transcript;
       } else {
         interimTranscript += event.results[i][0].transcript;
       }
     }
 
-    updateText(interimTranscript || finalTranscript);
+    updateText(interimTranscript || finalTranscriptRef.current);
 
-    if (finalTranscript) {
-      console.log('finalTranscript: ', finalTranscript)
-      onVoiceTranscript(finalTranscript);
+    if (finalTranscriptRef.current) {
+      onVoiceTranscript(finalTranscriptRef.current);
       deactivateVoice();
     }
   };
