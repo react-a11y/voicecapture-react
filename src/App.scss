@@ -57,7 +57,22 @@
   }
 }
 
-.button-voicecapture-example {
+.content-actions {
+  display: flex;
+  gap: 20px;
+  button,
+  .language {
+    width: 50%;
+  }
+  @media (max-width: 800px) {
+    flex-direction: column;
+    .language {
+      width: 100%;
+    }
+  }
+}
+
+.content button.button-voicecapture-example {
   background: var(--primary);
   color: #fff;
   display: inline-flex;
@@ -69,6 +84,7 @@
   cursor: pointer;
   min-height: 70px;
   white-space: nowrap;
+  margin: 0 !important;
 
   svg {
     margin-right: 1rem;
