@@ -44,7 +44,8 @@ function App() {
               onClick={() => openVoiceCapture("fullscreen")}
             >
               <span className="material-symbols-outlined"> &#xe029; </span>
-              <span className="material-symbols-outlined"> &#xe5d0; </span> FullScreen
+              <span className="material-symbols-outlined"> &#xe5d0; </span>{" "}
+              FullScreen
             </button>
 
             <button
@@ -52,7 +53,8 @@ function App() {
               onClick={() => openVoiceCapture("float")}
             >
               <span className="material-symbols-outlined"> &#xe029; </span>
-              <span className="material-symbols-outlined"> &#xe62e; </span> Float
+              <span className="material-symbols-outlined"> &#xe62e; </span>{" "}
+              Float
             </button>
           </div>
 
@@ -70,6 +72,15 @@ function App() {
               <option value="pt">Portuguese</option>
               <option value="es">Spanish</option>
               <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="it">Italian</option>
+              <option value="ja">Japanese</option>
+              <option value="zh">Chinese</option>
+              <option value="ru">Russian</option>
+              <option value="ar">Arabic</option>
+              <option value="ko">Korean</option>
+              <option value="nl">Dutch</option>
+              <option value="sv">Swedish</option>
             </select>
           </div>
         </div>
