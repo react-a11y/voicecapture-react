@@ -21,6 +21,10 @@ function App() {
     setStart(true);
   };
 
+  const handleDeactivate = () => {
+    setStart(false);
+  };
+
   return (
     <NucleusReact config={configApp}>
       <VoiceCapture
@@ -28,6 +32,7 @@ function App() {
         lang={lang}
         mode={mode}
         onVoiceTranscript={handleVoiceTranscript}
+        onDeactivate={handleDeactivate}
       />
       <div className="content example">
         <h2>Usage Example</h2>
