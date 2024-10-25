@@ -2,15 +2,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import "./VoiceCapture.scss";
+import { translates } from "./VoiceCapture.translate";
 
-const translates: Record<string, Record<string, string>> = {
-  en: {
-    speakNow: "Speak now...",
-    noSpeech: "No speech detected.",
-    audioCapture: "Audio capture failed.",
-    enableMicrophone: "Please enable your microphone.",
-  },
-};
+const translate: Record<string, Record<string, string>> = translates;
 
 const VoiceCapture = ({
   start,
@@ -142,7 +136,7 @@ const VoiceCapture = ({
   };
 
   const getTranslation = (key: string): string => {
-    const translationsForLang = translates[lang] || translates["en"];
+    const translationsForLang = translate[lang] || translates["en"];
     return translationsForLang[key] || key;
   };
 
