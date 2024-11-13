@@ -10,6 +10,7 @@ const VoiceCapture = ({
   start,
   lang = "en",
   mode = "fullscreen",
+  clipboard = false,
   onVoiceTranscript,
   onDeactivate,
 }: any) => {
@@ -127,6 +128,16 @@ const VoiceCapture = ({
     updateText(interimTranscript || finalTranscriptRef.current);
 
     if (finalTranscriptRef.current) {
+      if(clipboard) {
+        navigator.clipboard.writeText(finalTranscriptRef.current).then(
+          () => {
+            console.log('Text copied to clipboard');
+          },
+          (err) => {
+            console.error('Could not copy text to clipboard', err);
+          }
+        );
+      }
       onVoiceTranscript(finalTranscriptRef.current);
       deactivateVoice();
     }
@@ -151,20 +162,25 @@ const VoiceCapture = ({
     <section
       className={`voicecapture ${start ? "active" : ""} ${mode ? mode : ""}`}
       onClick={() => deactivateVoice()}
+      aria-modal="true"
+      role="dialog"
+      aria-expanded={start ? "true" : "false"}
     >
-      <button className="exit" type="button" onClick={() => deactivateVoice()}>
-        <i className="icon icon-exit">X</i>
+      <button className="exit" type="button" onClick={() => deactivateVoice()} aria-label={getTranslation('close')}>
+        <i className="icon icon-exit" aria-hidden="true">X</i>
       </button>
-      <p ref={textTipRef} className="text-tip"></p>
+      <p ref={textTipRef} className="text-tip" aria-live="polite"></p>
       <button
         type="button"
         className={`btn-voice ${animationButton ? "active" : ""}`}
+        aria-label={getTranslation('open')}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
           height="24"
+          aria-hidden="true"
         >
           <path d="M17 11.998c0 2.76-2.23 5-4.99 5l-.002.002a4.994 4.994 0 01-4.979-5h-2c0 3.52 2.59 6.433 5.98 6.92v3.078h.01V22h2v-3.08h-.01A6.982 6.982 0 0019 11.998z" />
           <path fill="none" d="M0 0h24v24H0z" />
