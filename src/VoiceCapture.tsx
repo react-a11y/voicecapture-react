@@ -163,14 +163,14 @@ const VoiceCapture = ({
       className={`voicecapture ${start ? "active" : ""} ${mode ? mode : ""}`}
       onClick={() => deactivateVoice()}
     >
-      <button className="exit" type="button" onClick={() => deactivateVoice()} aria-label="Close voice capture">
+      <button className="exit" type="button" onClick={() => deactivateVoice()} aria-label={getTranslation('close')}>
         <i className="icon icon-exit" aria-hidden="true">X</i>
       </button>
       <p ref={textTipRef} className="text-tip" aria-live="polite"></p>
       <button
         type="button"
         className={`btn-voice ${animationButton ? "active" : ""}`}
-        aria-label="Start voice capture"
+        aria-label={getTranslation('open')}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
