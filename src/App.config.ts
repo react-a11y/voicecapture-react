@@ -28,6 +28,7 @@ const MyComponent = () => {
     <VoiceCapture
       start={start}
       lang="en"
+      clipboard={true}
       mode="fullscreen"
       onVoiceTranscript={handleTranscript}
       onDeactivate={() => setStart(false)}
