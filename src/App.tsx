@@ -31,6 +31,7 @@ function App() {
         start={start}
         lang={lang}
         mode={mode}
+        clipboard
         onVoiceTranscript={handleVoiceTranscript}
         onDeactivate={handleDeactivate}
       />
