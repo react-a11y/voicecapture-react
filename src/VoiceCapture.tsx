@@ -162,6 +162,9 @@ const VoiceCapture = ({
     <section
       className={`voicecapture ${start ? "active" : ""} ${mode ? mode : ""}`}
       onClick={() => deactivateVoice()}
+      aria-modal="true"
+      role="dialog"
+      aria-expanded={start ? "true" : "false"}
     >
       <button className="exit" type="button" onClick={() => deactivateVoice()} aria-label={getTranslation('close')}>
         <i className="icon icon-exit" aria-hidden="true">X</i>
